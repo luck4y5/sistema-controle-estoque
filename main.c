@@ -5,7 +5,7 @@
 void exibir_menu(void) {
     printf("\n=== CONTROLE DE ESTOQUE ===\n");
     printf("1 - Listar produtos\n");
-    printf("2 - Exibir valor total em estoque\n");
+    printf("2 - Exibir total em estoque (com tributos)\n");
     printf("0 - Sair\n");
     printf("Escolha uma opcao: ");
 }
