@@ -5,7 +5,7 @@
 void exibir_menu(void) {
     printf("\n=== CONTROLE DE ESTOQUE ===\n");
     printf("1 - Listar produtos\n");
-    printf("2 - Exibir total em estoque (com tributos)\n");
+    printf("2 - Exibir valor total em estoque\n");
     printf("3 - Exibir total com desconto a vista\n");
     printf("4 - Exibir total a prazo (com juros)\n");
     printf("0 - Sair\n");
@@ -16,10 +16,7 @@ void listar_produtos(Produto lista[], int total) {
     printf("\n--- Produtos Cadastrados ---\n");
 
     for (int i = 0; i < total; i++) {
-        printf("ID: %d | Codigo de barras: %s | Categoria: %s | Nome: %s | Preco: R$ %.2f | Qtd: %d\n",
-               lista[i].id,
-               lista[i].codigo_barras,
-               lista[i].categoria,
+        printf("Nome: %s | Preco: R$ %.2f | Qtd: %d\n",
                lista[i].nome,
                lista[i].preco,
                lista[i].quantidade);
@@ -30,16 +27,18 @@ float calcular_total(Produto lista[], int total) {
     float soma = 0.0;
 
     for (int i = 0; i < total; i++) {
-        soma += lista[i].preco * lista[i].quantidade;
+        soma += lista[i].preco;
     }
 
-    return soma + (soma * TAXA_PADRAO);
+    return soma;
 }
 
+/* ALUNO 4 - Pagamento à Vista */
 float aplicar_desconto(float total) {
     return total - (total * TAXA_DESCONTO);
 }
 
+/* ALUNO 5 - Pagamento a Prazo */
 float aplicar_juros(float total) {
     return total + (total * TAXA_JUROS);
 }
@@ -49,15 +48,11 @@ int main(void) {
     int total_produtos = 2;
 
     estoque[0].id = 1;
-    strcpy(estoque[0].codigo_barras, "7890001");
-    strcpy(estoque[0].categoria, "Papelaria");
     strcpy(estoque[0].nome, "Caderno");
     estoque[0].preco = 15.50;
     estoque[0].quantidade = 10;
 
     estoque[1].id = 2;
-    strcpy(estoque[1].codigo_barras, "7890002");
-    strcpy(estoque[1].categoria, "Escritorio");
     strcpy(estoque[1].nome, "Caneta");
     estoque[1].preco = 3.00;
     estoque[1].quantidade = 50;
@@ -82,6 +77,7 @@ int main(void) {
                        calcular_total(estoque, total_produtos));
                 break;
 
+            /* ALUNO 4 - Pagamento à Vista */
             case 3:
             {
                 float total = calcular_total(estoque, total_produtos);
@@ -93,6 +89,7 @@ int main(void) {
                 break;
             }
 
+            /* ALUNO 5 - Pagamento a Prazo */
             case 4:
             {
                 float total = calcular_total(estoque, total_produtos);
