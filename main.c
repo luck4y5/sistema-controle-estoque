@@ -10,17 +10,12 @@ void exibir_menu(void) {
     printf("Escolha uma opcao: ");
 }
 
-void listar_produtos(Produto lista[], int total) {
-    printf("\n--- Produtos Cadastrados ---\n");
-
+float calcular_total(Produto lista[], int total) {
+    float soma = 0.0;
     for (int i = 0; i < total; i++) {
-        printf("ID: %d | Codigo de barras: %s | Nome: %s | Preco: R$ %.2f | Qtd: %d | Categoria: %s\n",
-               lista[i].id,
-               lista[i].codigo_barras,
-               lista[i].nome,
-               lista[i].preco,
-               lista[i].quantidade,
-               lista[i].categoria);
+        soma += lista[i].preco * lista[i].quantidade;
+    }
+    return soma + (soma * TAXA_PADRAO);
 }
 
 float calcular_total(Produto lista[], int total) {
