@@ -16,5 +16,6 @@ typedef struct {
 void exibir_menu(void);
 void listar_produtos(Produto lista[], int total);
 float calcular_total(Produto lista[], int total);
+float aplicar_juros(float total);
 
 #endif
